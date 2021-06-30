@@ -11,6 +11,7 @@ def start_bot(update: Updater, context: CallbackContext):
 	mytext = """Hello {}
 
 	I have only /start command! =)""".format(update.message.chat.first_name)
+	logging.info('User {} press /start'.format(update.message.chat.username))
 	update.message.reply_text(mytext)
 
 def chat(update: Updater, context: CallbackContext):
@@ -24,7 +25,6 @@ def main():
 
 	updtr.dispatcher.add_handler(CommandHandler("start", start_bot))
 	updtr.dispatcher.add_handler(MessageHandler(Filters.text, chat))
-
 
 	updtr.start_polling()
 	updtr.idle()
